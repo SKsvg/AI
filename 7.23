@@ -1,0 +1,149 @@
+190 users online
+Search
+ 
+Login with GoogleLogin with StackOverflow
+10861
+Program
+1
+likes(john,pizza).
+2
+likes(mary,pasta).
+3
+​
+4
+friends(X,Y):-
+5
+    likes(X,F),
+6
+    likes(Y,F).
+
+cat=cat.
+1true
+cat=dog.
+false
+x=cat.
+false
+X=cat.
+X = cat
+X=Y.
+X = Y
+person(john,25)=person(_,Age).
+Age = 25
+person(john,25)=person(P,Age).
+Age = 25,
+P = john
+person(john,25)=person(peter,Age).
+false
+person(john,25)=person(P,_).
+P = john
+person(john,25)=person(P,25).
+P = john
+person(john,25)=person(P,56).
+false
+person(john,25)=person(_,_).
+1true
+is_bigger(X,dog)=is_bigger(elephant,dog).
+X = elephant
+p(X,2,2)=p(1,Y,X).
+false
+p(X,2,2)=p(_,Y,X).
+X = Y, Y = 2
+p(X,2,2)=p(1,Y,Z).
+X = 1,
+Y = Z, Z = 2
+p(X,2,2)=p(1,Y,Z).
+X = 1,
+Y = Z, Z = 2
+p(X,2,1)=p(1,Y,X).
+X = 1,
+Y = 2
+p(_,2,1)=p(1,Y,_).
+Y = 2
+likes(john,pizza)=likes(X,Y).
+X = john,
+Y = pizza
+f(a,g(X,Y))=f(X,Z),Z=g(W,h(X)).
+W = X, X = a,
+Y = h(a),
+Z = g(a,h(a))
+h(X,f(Y,b))=h(g(a),Z),Z=f(U,V),Y=a.
+U = Y, Y = a,
+V = b,
+X = g(a),
+Z = f(a,b)
+-------------------------------------------------------------------------------------------------
+
+mortal(X):-man(X).
+man(socrates).
+'''''''''''''''''''''''''
+mortal(socrates).
+1true
+
+----------------------------------------------------------------------------------------------
+parent(john,mary).
+parent(mary,alice).
+
+grandparent(X,Z):-parent(X,Y),parent(Y,Z).
+'''''''''''''''''''''
+grandparent(john,alice).
+1true
+parent(john,Y),parent(Y,alice).
+Y = mary
+parent(Y,alice),parent(john,Y).
+Y = mary
+'''''''''''''''''''''
+
+---------------------------------------------------------------------------
+likes(john,pizza).
+likes(mary,pasta).
+
+friends(X,Y):-
+    likes(X,F),
+	likes(Y,F).
+''''''''''''''''''''
+friends(john,mary).
+false
+''''''''''''''''''''
+
+likes(john,pizza).
+likes(john,pasta).
+likes(mary,pasta).
+
+friends(X,Y):-
+    likes(X,F),
+	likes(Y,F).
+''''''''''''''''''''''
+friends(mary,john).
+1true
+''''''''''''''''''''''
+likes(mary,F),likes(john,F).
+F = pasta
+''''''''''''''''''''''''
+-------------------------------------------------------------------
+male(john).
+male(peter).
+male(michael).
+male(david).
+female(mary).
+female(susan).
+female(lisa).
+female(emma).
+
+%parent fact
+parent(john,mary).
+parent(john,peter).
+parent(mary,lisa).
+parent(mary,david).
+parent(peter,emma).
+parent(susan,john).
+parent(michael,john).
+
+grandparent(X,Y):- parent(X,Z),parent(Z,Y).
+siblings(X,Y):- parent(Z,X),parent(Z,Y).
+mother(X,Y):-female(X),parent(X,Y).
+father(X,Y):-male(X),parent(X,Y).
+sister(X,Y):-female(X),siblings(X,Y).
+brother(X,Y):-male(X),siblings(X,Y).
+granddad(X,Y):-male(X),grandparent(X,Y).
+grandmom(X,Y):-female(X),grandparent(X,Y).
+'''''''''''''''''''''''''''''''''''''''
