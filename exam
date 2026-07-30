@@ -1,0 +1,51 @@
+% Facts
+marks(john, 80, 90, 70).
+marks(mary, 75, 25, 55).
+marks(alan, 30, 50, 10).
+
+% Corrected Predicates
+total_marks(S, Total) :- 
+    marks(S, X, Y, Z), 
+    Total is X + Y + Z.
+
+average_marks(S, Avg) :- 
+    total_marks(S, Total), % Reused total_marks efficiently with correct variable S
+    Avg is Total / 3.
+
+min_mark(S, Min) :- 
+    marks(S, X, Y, Z), 
+    Min is min(X, min(Y, Z)). % Nested min functions evaluated using 'is'
+
+% Corrected Interactive Rule
+interact :-
+    write('Enter your Name?'), nl,
+    read(Name),
+    write('Hello '), write(Name),
+    write(', your total marks is '),
+    total_marks(Name, Total), write(Total), nl.
+
+average:-
+    write('Enter your Name?'),nl,
+    read(Name),
+    write('Hi '), write(Name),
+    write(', your Average marks is '),
+    average_marks(Name,Avg),write(Avg),nl.
+
+minimum:-
+    write('Enter your Name?'),nl,
+    read(Name),
+    write('Hi '), write(Name),
+    write(', your minimum marks is '),
+    average_marks(Name,Min),write(Min),nl.
+
+overall:-
+    write('Enter your Name?'),nl,
+    read(Name),
+    write('Hi '), write(Name),
+    write(', your overall grade is '),
+    average_marks(Name,Avg),
+    Avg>75 ->  write('A');
+    Avg>60 ->  write('B');
+    Avg>40 ->  write('C');
+    write('F');
+    nl.
