@@ -1,0 +1,17 @@
+greet_user:-
+    write('What is your name?'),nl,
+    read(Name),
+    write('Hello, '),write(Name),write('!'),nl.
+------------------------------------------------
+greet_user.
+What is your name?
+ravi
+Hello, ravi!
+1true
+===================================================
+age_response:-
+    write('Enter your Age?'),nl,
+    read(Age),
+    Age >= 18 ->
+    		write('You are an adult.!'),nl;
+    		write('You are an minor.!'),nl.
