@@ -1,0 +1,106 @@
+X=5,X\==5.
+false
+X=5,X\==6.
+X = 5
+3+2 =:= 5.
+1true
+X is 3+2.
+X = 5
+5=\=4.
+1true
+
+likes(alice,apple).
+likes(bob,banana).
+likes(charlie,apple).
+========================================================================
+%who like same fruit (using unification)
+same_taste(Person1,Person2):-
+    likes(Person1,Fruit),
+    likes(Person2,Fruit),
+    Person1 \= Person2. %Not the same person(unifiable but different) ,if we remove this x,y alco tale as same person not different person 
+%unnecessarlly person assignment
+%X = Y, Y = alice | X = alice,  Y = charlie | X = Y, Y = bob | X = charlie,Y = alice | X = Y, Y = charlie
+-----------------------------------------------------------------------
+same_taste(alice,charlie).
+1true
+same_taste(alice,bob).
+false
+same_taste(X,Y).
+X = alice,
+Y = charlie
+X = charlie,
+Y = alice
+false
+
+=========================================================================
+salary(john,50000).
+salary(mary,65000).
+salary(raj,30000).
+
+bonus(Employee,Bonus):-
+    salary(Employee,Salary),
+    Bonus is Salary * 0.10.
+------------------------------------------------------------------------
+bonus(raj,Bonus).
+Bonus = 3000.0
+-----------------------------------------------------------------
+same_salary(E1,E2):-
+    salary(E1,S1),
+    salary(E2,S2),
+    E1 \= E2,	%unnecessary things are filtered out
+    S1 =:= S2.	%check equality
+------------------------------------------------------------------
+same_salary(X,Y).
+X = john,
+Y = raj
+X = raj,
+Y = john
+false
+%-------------------------------------------------------------Salary greater than threshold
+earns_more_than(Employee,Threshold):-
+    salary(Employee,Salary),
+    Salary>Threshold.
+----------------------------
+earns_more_than(X,30000).
+X = mary
+false
+%------------------------------------------------------ Salary between
+salary_between(Employee,Tr1,Tr2):-
+    salary(Employee,Salary),
+    Salary>Tr1,
+    Salary<Tr2.
+------------------------------------
+salary_between(john,20000,60000).
+1true
+%-------------------------------------------------------salary differences
+salary_difference(E1,E2,Diff):-
+    salary(E1,S1),
+    salary(E2,S2),
+    Diff is S1-S2.
+%----------------------------------
+salary_difference(john,mary,X).
+X = -35000
+-----------
+salary_difference(X,Y,35000).
+X = mary,
+Y = john
+X = mary,
+Y = raj
+false
+------------
+salary_difference(X,Y,0).
+X = Y, Y = john
+X = john,
+Y = raj
+X = Y, Y = mary
+X = raj,
+Y = john
+X = Y, Y = raj
+%----------after add E1 \= E2,
+salary_difference(X,Y,0).
+X = john,
+Y = raj
+X = raj,
+Y = john
+false
+
