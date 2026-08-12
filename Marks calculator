@@ -1,0 +1,39 @@
+% Predicate to read N marks from user
+read_marks(0, []) :- !.
+read_marks(N, [M|Rest]) :-
+    N > 0,
+    format("Enter mark ~w: ", [N]),
+    read(M),
+    N1 is N - 1,
+    read_marks(N1, Rest).
+
+% Calculate average
+average_marks(MarksList, Avg) :-
+    sum_list(MarksList, Total),
+    length(MarksList, Count),
+    Count > 0,
+    Avg is Total / Count.
+
+% Get minimum mark
+min_marks([M], M).   % base case: one element
+min_marks([H|T], Min) :-
+    min_marks(T, MinTail),
+    Min is min(H, MinTail).
+
+% Get maximum mark
+max_marks([M], M).   % base case: one element
+max_marks([H|T], Max) :-
+    max_marks(T, MaxTail),
+    Max is max(H, MaxTail).
+
+% Main predicate to run
+calculate :-
+    write("How many subjects? "), nl,
+    read(N),
+    read_marks(N, MarksList),
+    average_marks(MarksList, Avg),
+    format("The average is: ~2f~n", [Avg]),
+    min_marks(MarksList, Min),
+    format("The minimum is: ~2f~n", [Min]),
+    max_marks(MarksList, Max),
+    format("The maximum is: ~2f~n", [Max]).
