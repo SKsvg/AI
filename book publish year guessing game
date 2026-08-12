@@ -1,0 +1,27 @@
+book(harry_potter, jk_rowling, 1997).
+book(the_hobbit, tolkien, 1937).
+book(foundation, asimov, 1951).
+
+author(Book,Author):-book(Book,Author,_).
+year(Book,Year):-book(Book,_,Year).
+
+find_author:-
+    write('Enter book name:'),nl,
+    read(Book),
+    author(Book,Author),
+    write('Author is: '),write(Author).
+
+guess_year:-
+    write('Enter Book:'),nl,
+    read(Book),
+    year(Book,Pyear),
+    repeat_guess(Book,Pyear).
+
+repeat_guess(Book,Pyear):-
+    write('Enter year:'),nl,
+    read(Year),
+    (   Year>Pyear->
+    write('Before this Year!'),nl,repeat_guess(Book,Pyear);
+    Year<Pyear->
+    write('After this Year!'),nl,repeat_guess(Book,Pyear);
+    write('You got it!')).
