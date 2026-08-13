@@ -1,0 +1,11 @@
+analyse_list(List):-
+    List=[Head|Tail],
+    write('This is the head of the list:'),write(Head),nl,
+    write('This is the tail of the list:'),write(Tail),nl.
+
+analyse_list([]):-
+    write('This is empty list.'),nl.
+
+second_list(List):-
+    List=[_,X|_],
+    write('This second element of the list:'),write(X),nl.
