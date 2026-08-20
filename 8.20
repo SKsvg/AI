@@ -1,0 +1,12 @@
+element_at([X|_],1,X).%base case (N=1)
+element_at([_|T],N,X):-%Recursive case: skip one and decrement N
+    N>1, 
+    N1 is N-1,
+    element_at(T,N1,X).
+
+-------------------------------------------------
+element_at([a,b,c,d],3,X).  -> element_at([b,c,d],2,X). -> element_at([c,d],1,X). %recursive calling
+X = c
+false
+
+===============================================================================================================
