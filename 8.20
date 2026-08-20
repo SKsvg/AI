@@ -10,3 +10,44 @@ X = c
 false
 
 ===============================================================================================================
+%concatenating 2 lists
+================================================================================================================
+concat_list([],List,List).%base case
+concat_list([Elem|List1],List2,[Elem|List3]) :- concat_list(List1,List2,List3).
+---------------------------------------------------------------------------------
+concat_list([a,b,c],[e,f,g],X). -> concat_list([a,b],[c,e,f,g],X). -> concat_list([a],[a,c,e,f,g],X).
+X = [a, b, c, e, f, g]
+
+==========================================================
+sum_list([],0).%base case
+sum_list([Head|List1],Sum) :- 
+    sum_list(List1,TailSum),
+    Sum is Head+TailSum.
+-------------------------------------
+sum_list([1,2,3.4],T). -> sum_list([],0). -> sum_list([4],4). -> sum_list([3.4],7). -> sum_list([2,3.4],9). -> sum_list([1,2,3.4],10).
+T = 3
+
+=========================================================
+length_list([],0).%base case
+length_list([_|Tail],Length) :- 
+    length_list(Tail,TailLenght),
+    Length is TailLenght+1.
+------------------------------------
+length_list([1,2,6,9],T).
+T = 4
+=========================================================
+index_of(X,[X|_],1).
+index_of(Y,[_|Tail],Index) :- 
+    index_of(Y,Tail,Index1),
+    Index is Index1+1.
+-----------------------------------------
+index_of(2,[1,2,6,9],T).
+T = 2
+===========================================================
+last_element([X],X).
+last_element([_|Tail],Element) :- 
+    last_element(Tail,Element).
+--------------------------------------
+last_element([a,b,c,d],T).
+T = d
+===========================================================
