@@ -51,3 +51,13 @@ last_element([_|Tail],Element) :-
 last_element([a,b,c,d],T).
 T = d
 ===========================================================
+remove_first([_|Tail],Tail).
+========================================
+remove_last([_],[]).
+remove_last([Head|Tail],[Head|Result]):- 
+    remove_last(Tail,Result).
+----------------------------------
+remove_last([2,4],X).
+X = [2]
+===============================================================
+
