@@ -1,3 +1,4 @@
+//------------------Is a a member of [c,b,a]?---------
 member(a,[c,b,a]).
 1true
 member(a,[c,a,b]).
@@ -9,9 +10,12 @@ X = 3
 X = 2
 X = 1
 ======================================================================
+
 append([7,8],[3,2,1],X).
 X = [7, 8, 3, 2, 1]
 ------------------------------
+
+//---------------all possible ways to split [3,2,1] into two lists
 append(X,Y,[3,2,1]).
 X = [],
 Y = [3, 2, 1]
@@ -28,6 +32,22 @@ L = 3
 --------------------------
 length(L,2).
 L = [_, _]
+
+Here L is unknown, but its length must be 2.
+
+Therefore Prolog creates:
+
+L = [_, _]
+
+The _ means any value.
+
+For example, all of these have length 2:
+
+[a,b]
+[3,7]
+[x,y]
+
+So Prolog doesn't know the actual values yet.
 ========================================================================
  //here b removed
 
@@ -40,6 +60,12 @@ this work only for 2 variables only,remove b and give X=a
 select(X,[a,b],[b]).
 X = a
 false
+
+select(X, OriginalList, ResultList)
+
+means:
+
+X is an element that can be removed from OriginalList to produce ResultList
 --------------------------
 //first element removed
 
@@ -57,5 +83,23 @@ false
 nth1(3,[a,b,b,c],X).
 X = b
 =====================================================================
+
+remove duplicates
+--------------------
+
+remove_duplicates([], []).
+
+remove_duplicates([H|T], R) :-
+    member(H, T),
+    select(H, T, T1),
+    remove_duplicates([H|T1], R).
+
+remove_duplicates([H|T], [H|R]) :-
+    \+ member(H, T),
+    remove_duplicates(T, R).
+
+=========================================================================
+
+
 
 
