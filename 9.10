@@ -1,0 +1,95 @@
+square_row(0,_).
+square_row(Cols,Char):-
+    write(Char),
+    Cols1 is Cols -1,
+    square_row(Cols1,Char).
+    
+
+square(0,_).
+square(No,Char):-
+    square_row(No,Char),
+    nl,
+    No1 is No -1,
+    square(No1 ,Char).
+----------------------------------------
+square(5,'* ').
+* * * * *
+* * * *
+* * *
+* *
+*
+1true
+========================================================
+square(N,Char):-
+        square_rows(N,N,Char).
+
+square_rows(0,_,_).
+square_rows(Row,Cols,Char):-
+    square_row(Cols,Char),
+    nl,
+    Row1 is Row -1,
+    square_rows(Row1,Cols,Char).
+
+square_row(0,_).
+square_row(Cols,Char):-
+    write(Char),
+    Cols1 is Cols -1,
+    square_row(Cols1,Char).
+    
+-------------------------------------
+square(5,'* ').
+* * * * *
+* * * * *
+* * * * *
+* * * * *
+* * * * *
+1true
+==========================================
+remove_duplictes([],[]).
+
+remove_duplictes([H|T],R):-
+    member(H,T),!,  //once result found remaining part not executed with (!)
+    remove_duplictes(T,R).
+
+remove_duplictes([H|T],[H|R]):-
+    remove_duplictes(T,R).
+
+---------------------------------------
+remove_duplictes([a,b,a,c,b,b],X).
+X = [a, c, b]
+==========================================
+max(X,Y,X):- X>=Y,!.
+max(_,Y,Y).
+
+or
+
+max(X,Y,X):- X>=Y.
+max(X,Y,Y):- Y>=X.
+
+=============================================
+grade(Mark,a):- Mark >=75,!.
+grade(Mark,b):- Mark >=65,!.
+grade(Mark,c):- Mark >=55,!.
+grade(Mark,s):- Mark >=735,!.
+grade(_,f).
+
+------------------------------------
+grade(10,Y).
+Y = f
+
+===============================
+total_salary(Bs,Fs):-
+    allow(Bs,Al),
+    Bons is Bs*Al,
+    Fs is Bs+Bons.
+
+allow(Bs,0.3):- Bs>75000,!.
+allow(Bs,0.2):- Bs>50000,!.
+allow(Bs,0.1):- Bs<50000,!.
+--------------------------------------
+total_salary(10000,Y).
+Y = 11000.0
+total_salary(60000,Y).
+Y = 72000.0
+total_salary(80000,Y).
+Y = 104000.0
