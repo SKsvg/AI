@@ -1,0 +1,1561 @@
+# Cellular Networks — Simple Point-Form Notes
+
+ ## 1\. Basic Structure of a Cellular Network
+
+ A **cellular network** has two main parts:
+
+ - **RAN — Radio Access Network**
+- **Mobile Core**
+
+ ### Simple diagram
+
+```
+        Mobile Phone / UE
+               │
+        Wireless Radio
+               │
+        ┌──────▼──────┐
+        │     RAN     │
+        │   eNB / gNB │
+        └──────┬──────┘
+               │
+        ┌──────▼──────┐
+        │ Mobile Core │
+        └──────┬──────┘
+               │
+          Internet /
+        Other Networks
+```
+
+ ### Easy way to remember
+
+ - **RAN = Radio connection**
+- **Core = Network control \+ Internet connection**
+
+---
+
+ # 2\. RAN — Radio Access Network
+
+ The **RAN** connects the user's mobile device to the mobile core using a wireless connection.
+
+ ### Main job of RAN
+
+ - Manages the **radio spectrum**.
+- Makes efficient use of available radio frequencies.
+- Provides good **Quality of Service (QoS)**.
+- Connects mobile devices to the core network.
+- Handles communication between the **UE** and the core.
+
+ ### Important terms
+
+ - **UE (User Equipment)** = mobile phone, tablet, IoT device, etc.
+- **Base Station** = equipment that communicates wirelessly with the UE.
+- **4G base station = eNodeB / eNB**
+- **5G base station = gNB**
+- **gNB = next Generation Node B**
+
+ ### Easy memory
+
+ > **UE → RAN → Core → Internet**
+
+---
+
+ # 3\. Mobile Core
+
+ The **Mobile Core** is the central part of the cellular network.
+
+ ### Main jobs
+
+ - **Authenticates** devices.
+  - Checks whether the user/device is allowed to use the network.
+- Provides **Internet/IP connectivity**.
+- Supports:
+  - Data services
+  - Voice services
+- Makes sure users receive the required **QoS**.
+- Tracks the **location/mobility** of users.
+- Helps maintain service when a user moves between cells.
+- Tracks user usage for:
+  - Billing
+  - Charging
+
+ ### Mobile Core names
+
+ - **4G:** Evolved Packet Core (**EPC**)
+- **5G:** 5G Core / Next Generation Core (**5GC / NG-Core**)
+
+ ### Easy memory
+
+ > **Core = Authentication + Internet + Mobility + QoS \+ Charging**
+
+---
+
+ # 4\. Main Difference Between RAN and Mobile Core
+
+ | RAN | Mobile Core |
+| --- | --- |
+| Handles radio communication | Handles network services |
+| Connects UE wirelessly | Connects users to Internet/services |
+| Manages radio resources | Manages authentication |
+| Uses eNB in 4G | Uses EPC in 4G |
+| Uses gNB in 5G | Uses 5G Core in 5G |
+| Handles handover between cells | Tracks user mobility |
+
+### Very simple example
+
+ When you open YouTube:
+
+```
+Phone
+  ↓
+gNB (RAN)
+  ↓
+5G Core
+  ↓
+Internet
+  ↓
+YouTube
+```
+
+---
+
+ # 5\. Important 5G Feature: CUPS
+
+ ## CUPS = Control and User Plane Separation
+
+ In 5G, the core separates two types of traffic:
+
+ ### 1\. Control Plane
+
+ The **Control Plane** handles control/signaling information.
+
+ Examples:
+
+ - Authentication
+- Registration
+- Mobility management
+- Session setup
+- Security
+- Network policies
+
+ ### 2\. User Plane
+
+ The **User Plane** carries actual user data.
+
+ Examples:
+
+ - YouTube video
+- WhatsApp messages
+- Web pages
+- Voice data
+- Downloads
+
+ ### Easy example
+
+ When watching YouTube:
+
+ - **Control Plane:** "This user wants a data session."
+- **User Plane:** Actual YouTube video packets.
+
+ ### Easy memory
+
+ > **Control Plane = controls the connection**\
+>  **User Plane = carries the data**
+
+---
+
+ # 6\. Network Slicing
+
+ **Network slicing** means creating separate logical networks on the same physical 5G network.
+
+ Each slice can have different requirements.
+
+ ### Example
+
+```
+                 5G Network
+                     │
+       ┌─────────────┼─────────────┐
+       ↓             ↓             ↓
+    eMBB           URLLC          mMTC
+  Video/AR       Vehicles       IoT Sensors
+```
+
+ ### Why use network slicing?
+
+ Different applications need different network characteristics.
+
+ For example:
+
+ - Video streaming needs **high speed**.
+- Autonomous cars need **very low delay \+ high reliability**.
+- IoT sensors need **low power + huge number of connections**.
+
+ ### Easy memory
+
+ > **Network slicing = One physical network → Multiple virtual networks**
+
+---
+
+ # 7\. Three Main 5G Service Categories
+
+ There are three important 5G use-case categories:
+
+ 1. **eMBB**
+2. **URLLC**
+3. **mMTC**
+
+---
+
+ # 8\. eMBB — Enhanced Mobile Broadband
+
+ ### Main goal
+
+ Provide **very high data speed and capacity**.
+
+ ### Examples
+
+ - 4K video
+- 8K video
+- AR — Augmented Reality
+- VR — Virtual Reality
+- Smart homes
+- Smart offices
+- Fast downloads
+
+ ### RAN requirements
+
+ - Wide bandwidth
+- Sub-6 GHz
+- mmWave
+- Massive MIMO
+- Beamforming
+
+ ### Main priority
+
+ > **High speed**
+
+ It is more concerned with high throughput than extremely low latency.
+
+ ### Easy memory
+
+ **eMBB = Fast Internet**
+
+---
+
+ # 9\. URLLC — Ultra-Reliable Low-Latency Communication
+
+ ### Main goal
+
+ Provide:
+
+ - **Very low latency**
+- **Very high reliability**
+
+ ### Examples
+
+ - Autonomous vehicles
+- V2X communication
+- Remote surgery
+- Industrial robots
+- Factory automation
+- Critical control systems
+
+ ### RAN requirements
+
+ - Short transmission intervals
+- Fast scheduling
+- High reliability
+- Priority resources
+
+ ### Reliability
+
+ Target can be around **99.999% or higher**, depending on the specific service requirement.
+
+ ### Main priority
+
+ > **Low delay + high reliability**
+
+ ### Easy memory
+
+ **URLLC = Very fast response + very reliable**
+
+---
+
+ # 10\. mMTC — Massive Machine-Type Communication
+
+ Your notes use **MMTC**; the standard abbreviation is commonly written **mMTC**.
+
+ ### Main goal
+
+ Connect a **very large number of IoT devices**.
+
+ ### Examples
+
+ - Smart city sensors
+- Smart electricity meters
+- Agriculture sensors
+- Air-quality sensors
+- Weather sensors
+- Environmental monitoring
+
+ ### Main characteristics
+
+ - Huge number of devices
+- Low power consumption
+- Low cost
+- Long battery life
+- Does not require very high speed
+
+ ### Connection density
+
+ 5G targets can reach around **1 million devices per km²** under suitable conditions.
+
+ ### Main priority
+
+ > **Many devices + low power**
+
+ ### Easy memory
+
+ **mMTC = Massive IoT**
+
+---
+
+ # 11\. eMBB vs URLLC vs mMTC
+
+ | Feature | eMBB | URLLC | mMTC |
+| --- | --- | --- | --- |
+| Main goal | High speed | Very low delay | Many devices |
+| Example | 4K video | Self-driving car | IoT sensor |
+| Priority | Speed | Reliability + latency | Scalability |
+| Data rate | Very high | Moderate/variable | Usually low |
+| Power | Normal | Normal | Very low |
+| Devices | Many | Important devices | Huge number |
+
+### Easy memory
+
+ - **eMBB → Speed**
+- **URLLC → Speed of response + reliability**
+- **mMTC → Number of devices**
+
+---
+
+ # 12\. Main Functions of a Base Station
+
+ A base station such as a **gNB** performs several important functions.
+
+ ## Function 1 — Establish wireless channel
+
+ When a UE:
+
+ - Turns on
+- Connects to the network
+- Moves to another cell through handover
+
+ the base station establishes the required wireless connection.
+
+---
+
+ ## Function 2 — Establish Control Plane connection
+
+ The base station connects the UE's control signaling to the Mobile Core.
+
+ This allows:
+
+ - Authentication
+- Registration
+- Mobility tracking
+- Security procedures
+- Session management
+
+---
+
+ ## Function 3 — Establish User Plane tunnels
+
+ For an active UE, the base station establishes tunnels toward the Mobile Core's User Plane.
+
+ These tunnels carry actual user data.
+
+---
+
+ ## Function 4 — Forward packets
+
+ The base station forwards:
+
+ - Control Plane packets
+- User Plane packets
+
+ between:
+
+```
+UE ↔ RAN ↔ Mobile Core
+```
+
+---
+
+ ## Function 5 — Coordinate handover
+
+ When a user moves:
+
+```
+Cell A → Cell B
+```
+
+ the RAN coordinates the handover.
+
+ The goal is:
+
+ > **Keep the connection active while the user moves.**
+
+---
+
+ ## Function 6 — Multi-point transmission
+
+ Multiple base stations can cooperate to transmit data to the same UE.
+
+ This can improve:
+
+ - Signal quality
+- Reliability
+- Coverage
+- Data performance
+
+---
+
+ # 13\. Six Main Base Station Functions — Easy Memory
+
+ Remember:
+
+ **W-C-T-F-H-M**
+
+ - **W** → Wireless channel
+- **C** → Control Plane connection
+- **T** → User Plane tunnels
+- **F** → Forward packets
+- **H** → Handover
+- **M** → Multi-point transmission
+
+---
+
+ # 14\. SCTP and GTP
+
+ Two important protocols appear in the RAN/Core connection.
+
+ ## SCTP
+
+ **SCTP = Stream Control Transmission Protocol**
+
+ ### Used for
+
+ - Control Plane signaling
+
+ ### Think of SCTP as
+
+ > **SCTP = Signaling**
+
+ It is a transport protocol designed to carry signaling information and has features useful for telecom networks.
+
+---
+
+ # 15\. GTP
+
+ **GTP = GPRS Tunneling Protocol**
+
+ ### Used for
+
+ - User Plane traffic
+- Tunneling user data
+
+ It commonly runs over **UDP/IP**.
+
+ ### Think of GTP as
+
+ > **GTP = User data tunnel**
+
+---
+
+ # 16\. SCTP vs GTP
+
+ | Feature | SCTP | GTP |
+| --- | --- | --- |
+| Main use | Control/signaling | User data tunneling |
+| Plane | Control Plane | User Plane |
+| Purpose | Carries signaling | Carries user packets through tunnels |
+| Common transport | IP | UDP/IP |
+| Easy memory | Signaling | Tunnel |
+
+### One-line answer
+
+ > **SCTP carries control-plane signaling, while GTP is used to tunnel user-plane traffic.**
+
+---
+
+ # 17. Handover
+
+ **Handover** happens when a UE moves from one base station/cell to another.
+
+ Example:
+
+```
+       Cell A                  Cell B
+     ┌───────┐               ┌───────┐
+     │ gNB A │ ────────────► │ gNB B │
+     └───┬───┘    Handover   └───┬───┘
+         │                        │
+         └─────── Mobile ─────────┘
+```
+
+ ### Why is handover needed?
+
+ Without handover:
+
+ - The connection could break when the user moves away from the current cell.
+
+ With handover:
+
+ - The network moves the UE to a better/nearby cell.
+- The service can continue.
+
+ ### Example
+
+ You are travelling in a car while making a phone call:
+
+```
+Tower 1 → Tower 2 → Tower 3
+```
+
+ The network performs handovers so your call can continue.
+
+---
+
+ # 18\. Evolution of Mobile Networks
+
+ ## 1G
+
+ - Analog technology
+- Mainly voice calls
+
+ **Memory:**
+
+ > 1G = Analog voice
+
+ ## 2G
+
+ - Digital voice
+- SMS
+- Better security
+
+ **Memory:**
+
+ > 2G = Digital voice + SMS
+
+ ## 3G
+
+ - Mobile data
+- Internet access
+- Higher speeds
+
+ **Memory:**
+
+ > 3G = Mobile broadband
+
+ ## 4G
+
+ - High-speed mobile Internet
+- IP-based services
+- Mbps-level data rates
+
+ **Memory:**
+
+ > 4G = Mobile Internet
+
+ ## 5G
+
+ - Much higher capacity
+- Higher data rates
+- Lower latency
+- Massive IoT
+- Network slicing
+- New industrial services
+
+ **Memory:**
+
+ > **5G = Speed + Low latency + IoT + New services**
+
+---
+
+ # 19\. OFDMA in 4G and 5G
+
+ ## What is OFDMA?
+
+ **OFDMA = Orthogonal Frequency Division Multiple Access**
+
+ It divides available radio resources into smaller parts in:
+
+ - **Time**
+- **Frequency**
+
+ Different users can receive different resources.
+
+ ### Simple example
+
+ Imagine a classroom with 3 students.
+
+ Instead of everyone talking at the same time:
+
+```
+Frequency →
+┌─────┬─────┬─────┐
+│ UE1 │ UE2 │ UE3 │
+└─────┴─────┴─────┘
+```
+
+ The network assigns different radio resources to different users.
+
+---
+
+ # 20\. OFDMA in LTE vs 5G
+
+ ### LTE / 4G
+
+ - Downlink uses **OFDMA**.
+- Uplink traditionally uses **SC-FDMA**.
+
+ **SC-FDMA = Single Carrier Frequency Division Multiple Access**
+
+ One reason for SC-FDMA in LTE uplink was to reduce the power-amplifier demands on the UE.
+
+ ### 5G NR
+
+ 5G NR uses OFDM-based transmission, including **CP-OFDM** for downlink and uplink, with **DFT-s-OFDM** also supported for certain uplink configurations.
+
+ ### Main advantage
+
+ 5G can provide flexible resource allocation across:
+
+ - Time
+- Frequency
+
+ This helps support:
+
+ - eMBB
+- URLLC
+- mMTC
+
+---
+
+ # 21\. Massive MIMO
+
+ ## MIMO
+
+ **MIMO = Multiple Input Multiple Output**
+
+ It uses multiple antennas for communication.
+
+ ### Simple idea
+
+ Instead of:
+
+```
+1 antenna → 1 data stream
+```
+
+ we can have:
+
+```
+Many antennas
+     ↓
+Multiple data streams
+     ↓
+Multiple users
+```
+
+---
+
+ # 22\. What is Massive MIMO?
+
+ Massive MIMO uses **many antennas** at the base station, potentially tens or hundreds.
+
+ ### Benefits
+
+ - Higher capacity
+- Better coverage
+- Better signal quality
+- More users can be served simultaneously
+- Better energy efficiency in suitable conditions
+
+---
+
+ # 23\. Beamforming
+
+ **Beamforming** means focusing radio energy toward a particular UE instead of spreading it equally in all directions.
+
+ ### Without beamforming
+
+```
+       ↗  ↑  ↖
+      ← gNB →
+       ↘  ↓  ↙
+```
+
+ Energy goes in many directions.
+
+ ### With beamforming
+
+```
+gNB ───────────────► UE
+       Focused beam
+```
+
+ ### Benefits
+
+ - Stronger signal
+- Better coverage
+- Better throughput
+- Less wasted radio energy
+
+---
+
+ # 24\. OFDMA + Massive MIMO
+
+ These technologies work together.
+
+ ### OFDMA divides resources in:
+
+ - **Time**
+- **Frequency**
+
+ ### Massive MIMO divides resources in:
+
+ - **Space**
+
+ Therefore:
+
+ > **5G can manage resources in time \+ frequency + space.**
+
+ ### Result
+
+ - More users
+- Higher capacity
+- Better coverage
+- Better cell-edge performance
+- Support for different services
+
+ ### Easy memory
+
+ > **OFDMA = Time + Frequency**\
+>  **Massive MIMO = Space**
+
+---
+
+ # 25\. Encryption and Integrity Protection
+
+ The radio interface is the wireless connection:
+
+```
+UE  ←──── Air Interface ────→  gNB
+```
+
+ This is an important security point because wireless signals travel through the air.
+
+ An attacker may try to:
+
+ - Listen to communication
+- Modify messages
+- Inject fake messages
+- Replay messages
+
+ Therefore, security is required.
+
+---
+
+ # 26\. Encryption
+
+ ### What is encryption?
+
+ Encryption changes readable information into protected information.
+
+ ### Purpose
+
+ Protects **confidentiality**.
+
+ It prevents unauthorized people from understanding:
+
+ - Voice
+- Messages
+- Data
+- Control information
+
+ ### Simple example
+
+```
+Original:
+"Hello"
+
+       ↓ Encryption
+
+Protected data:
+"X7$kP..."
+```
+
+ An attacker may capture the signal but should not be able to understand the protected data.
+
+ ### Easy memory
+
+ > **Encryption = Keep information secret**
+
+---
+
+ # 27\. Integrity Protection
+
+ Integrity protection checks whether a message was:
+
+ - Changed
+- Forged
+- Modified
+- Replayed
+
+ ### Example
+
+ Suppose the network sends:
+
+ > "Handover to Cell B"
+
+ An attacker should not be able to change it to:
+
+ > "Handover to fake Cell X"
+
+ Integrity protection helps detect unauthorized modification.
+
+ ### Easy memory
+
+ > **Integrity = Make sure the message is genuine and unchanged**
+
+---
+
+ # 28\. Encryption vs Integrity
+
+ | Encryption | Integrity |
+| --- | --- |
+| Protects secrecy | Protects correctness/authenticity |
+| Stops eavesdropping | Stops unauthorized modification |
+| "Can others read it?" | "Was it changed?" |
+
+### Very easy memory
+
+ > **Encryption → Nobody can read it**\
+>  **Integrity → Nobody can secretly change it**
+
+---
+
+ # 29\. 5G Mobile Core Functions
+
+ The 5G Core contains several **Network Functions (NFs)**.
+
+ The most important ones for exams are:
+
+ - **AMF**
+- **SMF**
+- **UPF**
+- **AUSF**
+- **UDM**
+- **PCF**
+- **NEF**
+- **NRF**
+- **NSSF**
+
+---
+
+ # 30\. AMF — Access and Mobility Management Function
+
+ ### Main job
+
+ AMF handles:
+
+ - UE registration
+- Authentication-related signaling
+- Mobility management
+- UE context
+- Security information
+- NAS signaling
+- Selection of the appropriate SMF
+
+ ### Think:
+
+ > **AMF = Access + Mobility**
+
+ ### Example
+
+ When your phone joins a 5G network:
+
+```
+Phone → AMF
+       ↓
+Registration / Mobility management
+```
+
+---
+
+ # 31\. SMF — Session Management Function
+
+ ### Main job
+
+ SMF manages data sessions.
+
+ It handles:
+
+ - Session establishment
+- Session modification
+- Session release
+- IP address allocation
+- User-plane tunnel management
+- QoS rules
+- Traffic steering
+
+ ### Think:
+
+ > **SMF = Session Manager**
+
+ ### Example
+
+ When your phone requests Internet access, SMF helps establish the required data session.
+
+---
+
+ # 32\. UPF — User Plane Function
+
+ ### Main job
+
+ UPF handles the **actual user data**.
+
+ Examples:
+
+ - YouTube packets
+- Web traffic
+- App data
+- Voice packets
+
+ ### Other jobs
+
+ - Packet forwarding
+- QoS enforcement
+- Usage reporting
+- Mobility anchoring
+- Packet inspection
+- Supporting edge computing
+
+ ### Think:
+
+ > **UPF = User data Forwarding**
+
+---
+
+ # 33\. AMF vs SMF vs UPF
+
+ This is very important.
+
+ | Function | Main job |
+| --- | --- |
+| AMF | Access + Mobility |
+| SMF | Session management |
+| UPF | User data |
+
+### Easy memory
+
+ > **AMF → Where is the user / Can the user access?**\
+>  **SMF → What session does the user need?**\
+>  **UPF → Carries the user's data**
+
+---
+
+ # 34\. AUSF — Authentication Server Function
+
+ ### Main job
+
+ AUSF performs **authentication**.
+
+ It checks whether the UE/subscriber is legitimate.
+
+ It can use:
+
+ - 5G-AKA
+- EAP-based authentication
+
+ It works with the UDM for subscriber information.
+
+ ### Think:
+
+ > **AUSF = Authentication**
+
+---
+
+ # 35\. UDM — Unified Data Management
+
+ ### Main job
+
+ UDM manages subscriber information.
+
+ It provides information such as:
+
+ - Subscription data
+- Authentication-related information
+- Service authorization information
+- Subscriber-related data
+
+ ### 4G comparison
+
+ > **UDM in 5G performs roles that were partly handled by HSS in 4G.**
+
+ ### Think:
+
+ > **UDM = User Data Management**
+
+---
+
+ # 36\. PCF — Policy Control Function
+
+ ### Main job
+
+ PCF provides network policies.
+
+ It controls things such as:
+
+ - QoS
+- Charging-related policies
+- Access control
+- Data-flow policies
+
+ ### Think:
+
+ > **PCF = Policy Controller**
+
+ ### 4G comparison
+
+ PCF is broadly related to the role of **PCRF** in LTE, but the 5G architecture is different and more service-oriented.
+
+---
+
+ # 37\. NEF — Network Exposure Function
+
+ ### Main job
+
+ NEF allows external applications/services to access selected network capabilities through controlled interfaces/APIs.
+
+ ### Why is this useful?
+
+ An external application may need information or network capabilities.
+
+ NEF provides controlled exposure.
+
+ ### Think:
+
+ > **NEF = Network capabilities exposed safely**
+
+---
+
+ # 38\. NRF — Network Repository Function
+
+ ### Main job
+
+ NRF works like a **service directory** for Network Functions.
+
+ It helps Network Functions:
+
+ - Discover other Network Functions
+- Find available services
+- Know which NF instances are available
+- Check NF status
+
+ ### Simple example
+
+ Suppose SMF needs a UPF.
+
+```
+SMF → NRF
+     "Where is an available UPF?"
+        ↓
+NRF → Provides available UPF information
+```
+
+ ### Think:
+
+ > **NRF = Network Function directory**
+
+---
+
+ # 39\. NSSF — Network Slice Selection Function
+
+ ### Main job
+
+ NSSF helps select the appropriate **network slice** for a UE/service.
+
+ Example:
+
+```
+UE
+ ↓
+NSSF
+ ↓
+Select appropriate slice
+ ↓
+eMBB / URLLC / mMTC
+```
+
+ ### Think:
+
+ > **NSSF = Network Slice Selector**
+
+---
+
+ # 40\. SDSF and UDSF
+
+ These are storage-related Network Functions.
+
+ ## SDSF
+
+ **Structured Data Storage Function**
+
+ - Stores structured data.
+- Can be implemented using an SQL database in a microservices architecture.
+
+ ### Think:
+
+ > **SDSF = Structured data**
+
+ ## UDSF
+
+ **Unstructured Data Storage Function**
+
+ - Stores unstructured/state data.
+- Can use a key-value store.
+
+ ### Think:
+
+ > **UDSF = Unstructured data**
+
+---
+
+ # 41\. Important 5G Core Functions — Memory Table
+
+ | Function | Easy meaning |
+| --- | --- |
+| **AMF** | Access + Mobility |
+| **SMF** | Session Management |
+| **UPF** | User data forwarding |
+| **AUSF** | Authentication |
+| **UDM** | Subscriber data |
+| **PCF** | Policies + QoS |
+| **NEF** | Expose network capabilities |
+| **NRF** | NF directory/discovery |
+| **NSSF** | Select network slice |
+| **SDSF** | Structured data storage |
+| **UDSF** | Unstructured data storage |
+
+---
+
+ # 42\. Simple 5G Core Diagram
+
+```
+                         5G CORE
+                            │
+          ┌─────────────────┼─────────────────┐
+          │                 │                 │
+         AMF               SMF               PCF
+          │                 │                 │
+   Access/Mobility      Sessions           Policies
+          │                 │
+          │                 ↓
+          │                UPF
+          │                 │
+          │                 ↓
+          │              Internet
+          │
+       AUSF
+          │
+    Authentication
+          │
+        UDM
+    Subscriber Data
+
+Other important functions:
+
+NSSF → Network Slice Selection
+NRF  → Network Function Discovery
+NEF  → External Network Exposure
+```
+
+---
+
+ # 43\. How a Phone Gets a 5G Connection
+
+ A simplified sequence is:
+
+ ### Step 1 — UE connects to RAN
+
+```
+UE → gNB
+```
+
+ The phone communicates wirelessly with the 5G base station.
+
+ ### Step 2 — Registration
+
+ The UE sends registration information through the gNB toward the AMF.
+
+ ### Step 3 — Authentication
+
+```
+UE → AMF → AUSF ↔ UDM
+```
+
+ The network checks whether the subscriber is legitimate.
+
+ ### Step 4 — Security
+
+ Security procedures establish protection for signaling and user communication.
+
+ ### Step 5 — Session establishment
+
+ The UE requests a data session.
+
+```
+UE → gNB → AMF → SMF
+```
+
+ ### Step 6 — UPF selected
+
+ The SMF selects/configures an appropriate UPF.
+
+ ### Step 7 — User Plane tunnel established
+
+```
+UE
+ ↓
+gNB
+ ↓
+GTP-U tunnel
+ ↓
+UPF
+ ↓
+Internet
+```
+
+ ### Step 8 — Internet data flows
+
+ Now the UE can send and receive Internet traffic.
+
+---
+
+ # 44\. Control Plane vs User Plane — Complete Example
+
+ Suppose you open YouTube.
+
+ ### Control Plane
+
+ Handles:
+
+ - Registration
+- Authentication
+- Session setup
+- Mobility
+- Security
+- QoS policies
+
+ ### User Plane
+
+ Handles:
+
+ - Actual YouTube video data
+- Audio
+- Images
+- Other application packets
+
+ ### Simple diagram
+
+```
+             CONTROL PLANE
+UE ────────► gNB ────────► AMF / SMF
+                              │
+                       Control & signaling
+
+              USER PLANE
+UE ────────► gNB ─────────► UPF ─────► Internet
+                    GTP-U
+                 Actual data
+```
+
+---
+
+ # 45\. Security Sequence — Simple Version
+
+ The secure connection can be understood like this:
+
+```
+1. UE connects
+       ↓
+2. Registration
+       ↓
+3. Authentication
+       ↓
+4. Security established
+       ↓
+5. Session created
+       ↓
+6. User-plane tunnel created
+       ↓
+7. Data transfer
+```
+
+ ### Main functions involved
+
+ - **AMF** → registration and mobility
+- **AUSF** → authentication
+- **UDM** → subscriber information
+- **SMF** → session management
+- **UPF** → user data
+
+---
+
+ # 46\. Full 5G Communication Flow
+
+ Remember this overall picture:
+
+```
+                 ┌───────────────┐
+                 │      UE       │
+                 │ Mobile Phone  │
+                 └───────┬───────┘
+                         │
+                    Wireless
+                         │
+                 ┌───────▼───────┐
+                 │      gNB      │
+                 │     5G RAN    │
+                 └───────┬───────┘
+                         │
+              ┌──────────┴──────────┐
+              │                     │
+        Control Plane           User Plane
+              │                     │
+             AMF                   UPF
+              │                     │
+        ┌─────┴─────┐               │
+        │           │               │
+       AUSF        SMF              │
+        │           │               │
+       UDM         PCF              │
+                                  Internet
+```
+
+---
+
+ # 47\. Important Exam Question 1
+
+ ## How do OFDMA and Massive MIMO improve 5G capacity and coverage?
+
+ ### Answer in simple points
+
+ - **OFDMA** divides radio resources efficiently in time and frequency.
+- Different users can receive different resource blocks.
+- 5G provides flexible resource allocation for users.
+- **Massive MIMO** uses many antennas at the gNB.
+- It allows multiple users/data streams to be served spatially.
+- **Beamforming** focuses radio energy toward the UE.
+- This improves signal strength.
+- It can improve coverage, especially at higher frequencies.
+- It increases cell capacity.
+- It improves cell-edge performance.
+
+ ### One-line exam answer
+
+ > **OFDMA efficiently uses time and frequency, while Massive MIMO uses space and beamforming, allowing 5G to support more users with higher capacity and better coverage.**
+
+---
+
+ # 48\. Important Exam Question 2
+
+ ## How does RAN maintain QoS for different network slices?
+
+ ### Answer
+
+ - Different applications have different requirements.
+- eMBB needs **high throughput**.
+- URLLC needs **very low latency and high reliability**.
+- mMTC needs **high connection density and low power**.
+- The gNB scheduler allocates radio resources according to service requirements.
+- Different slices can receive different resource priorities.
+- QoS rules are coordinated with the 5G Core.
+- This allows multiple services to share the same physical network while receiving different treatment.
+
+ ### Easy example
+
+```
+eMBB  → More bandwidth → High speed
+URLLC → High priority → Low delay
+mMTC  → Efficient access → Many devices
+```
+
+---
+
+ # 49\. Important Exam Question 3
+
+ ## Why are encryption and integrity protection important?
+
+ ### Answer
+
+ - The radio interface uses wireless communication.
+- Wireless signals can potentially be intercepted.
+- **Encryption** protects confidentiality.
+- It prevents attackers from understanding user/control data.
+- **Integrity protection** helps detect modified or forged messages.
+- It protects control signaling from unauthorized changes.
+- Together they provide:
+  - Confidentiality
+  - Integrity
+  - Trustworthy communication
+
+ ### Easy memory
+
+ > **Encryption = Hide the data**\
+>  **Integrity = Protect the data from being changed**
+
+---
+
+ # 50\. Most Important Terms to Memorize
+
+ ### Network
+
+ - **RAN** → Radio Access Network
+- **UE** → User Equipment
+- **eNB/eNodeB** → 4G base station
+- **gNB** → 5G base station
+- **EPC** → 4G Core
+- **5GC/NG-Core** → 5G Core
+
+ ### 5G Features
+
+ - **CUPS** → Control and User Plane Separation
+- **Network slicing** → Separate logical networks
+
+ ### 5G Services
+
+ - **eMBB** → High speed
+- **URLLC** → Low latency + high reliability
+- **mMTC** → Massive IoT
+
+ ### Radio Technologies
+
+ - **OFDMA** → Efficient time/frequency resource sharing
+- **MIMO** → Multiple antennas
+- **Massive MIMO** → Many antennas
+- **Beamforming** → Focus signal toward UE
+
+ ### Protocols
+
+ - **SCTP** → Control/signaling
+- **GTP** → User-plane tunneling
+
+ ### 5G Core
+
+ - **AMF** → Access + Mobility
+- **SMF** → Session
+- **UPF** → User data
+- **AUSF** → Authentication
+- **UDM** → Subscriber data
+- **PCF** → Policy
+- **NEF** → Network exposure
+- **NRF** → NF discovery
+- **NSSF** → Slice selection
+
+---
+
+ # 51\. Super-Short Revision Sheet
+
+ If you have very little time before the exam, remember these:
+
+```
+CELLULAR NETWORK
+        ↓
+   RAN + CORE
+
+RAN
+ ↓
+Wireless connection
+ ↓
+eNB = 4G
+gNB = 5G
+
+CORE
+ ↓
+Authentication
+Internet
+Mobility
+QoS
+Charging
+
+5G FEATURES
+ ↓
+CUPS = Control Plane + User Plane
+Network Slicing = Separate logical networks
+
+5G SERVICES
+ ↓
+eMBB  = High speed
+URLLC = Low latency + reliability
+mMTC  = Massive IoT
+
+BASE STATION
+ ↓
+Wireless channel
+Control connection
+User tunnel
+Forward packets
+Handover
+Multi-point transmission
+
+PROTOCOLS
+ ↓
+SCTP = Control signaling
+GTP  = User data tunnel
+
+5G RADIO
+ ↓
+OFDMA = Time + Frequency
+Massive MIMO = Space
+Beamforming = Focus signal
+
+SECURITY
+ ↓
+Encryption = Confidentiality
+Integrity = Detect changes
+
+5G CORE
+ ↓
+AMF  = Access/Mobility
+SMF  = Session
+UPF  = User data
+AUSF = Authentication
+UDM  = Subscriber data
+PCF  = Policy
+NEF  = Network exposure
+NRF  = NF discovery
+NSSF = Slice selection
+```
+
+ ### One final memory trick
+
+ **Think of a 5G network as a city:**
+
+ - **UE** = person using the city
+- **gNB/RAN** = road connecting the person
+- **AMF** = security/entry officer
+- **AUSF** = identity checker
+- **UDM** = citizen database
+- **SMF** = session/route manager
+- **UPF** = road carrying actual traffic
+- **PCF** = rule/policy maker
+- **NRF** = directory telling where services are
+- **NSSF** = chooses the correct special lane/network slice
+- **Internet** = destination outside the city
+
+ This mental model makes the 5G architecture much easier to remember.
