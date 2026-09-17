@@ -20,3 +20,34 @@ not_in_list(10,[1,2,3]).
 -===========================================
 ex================
 count_zero([2.3.0.5],X).
+
+
+
+
+
+
+
+
+
+============================================
+(Result = a; Result = b),!,Result = b.
+false
+(Result = a; Result = b),Result = b.
+Result = b
+============================================
+member(X, [a,b,c]),X = a.
+X = a
+false
+member(X, [a,b,c]),!,X = b.
+false
+member(X, [a,b,c]),!,X = c.
+false
+member(X, [a,b,c]),!,X = a.
+X = a
+member(X, [a,b,c]),X = b.
+X = b
+false
+member(X, [a,b,c]),X = c.
+X = c
+===================================================
+
