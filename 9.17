@@ -1,0 +1,20 @@
+bird(sparrow).
+bird(eagle).
+
+not_bird(X) :- \+ bird(X).
+---------------------------------
+\+happy(bob).
+1true
+not_bird(cat).
+1true
+not_bird(eagle).
+false
+==================================
+member(X, [X|_]).
+member(X, [_|T]) :- member(X, T).
+
+not_in_list(X,L) :- \+ member(X, L).
+--------------------------------------------
+not_in_list(10,[1,2,3]).
+1true
+-===========================================
